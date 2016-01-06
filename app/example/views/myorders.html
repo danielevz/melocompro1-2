@@ -1,0 +1,36 @@
+<div class="padding">
+  <super-navbar>
+    <super-navbar-button onclick="openDrawer()">
+      Menu
+    </super-navbar-button>
+    <super-navbar-title>
+      Mis Pedidos
+    </super-navbar-title>
+  </super-navbar>
+  <div class="list">
+
+  <div class="item item-button-right">
+    Pedido # 40001 - Enviado
+    <button class="button button-balanced">
+      <i class="icon fa fa-chevron-right"></i>
+    </button>
+  </div>
+  <div class="item item-button-right">
+    Pedido # 40001 - Entregado
+    <button class="button button-balanced">
+      <i class="icon fa fa-chevron-right"></i>
+    </button>
+  </div>
+  <div class="item item-button-right">
+    Pedido # 40001 - Entregado
+    <button class="button">
+      <i class="icon fa fa fa-chevron-right balanced"></i>
+    </button>
+  </div>
+</div>
+</div>
+<script>
+function openDrawer() {
+supersonic.ui.drawers.open();
+}
+</script>

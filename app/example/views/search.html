@@ -1,0 +1,110 @@
+<div class="padding">
+
+  <super-navbar>
+    <super-navbar-button onclick="openDrawer()">
+       &equiv;
+    </super-navbar-button>
+    <super-navbar-title>
+      Melocompro Search
+    </super-navbar-title>
+  </super-navbar>
+  <body>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon super-search placeholder-icon"></i>
+        <input id="search-box" type="text" placeholder="Buscar Productos">
+      </label>
+    </div>
+
+
+      <div id="leftsidebar" class="col hidden">
+        <div id="stats-container" class="col"></div>
+        <div id="clear-all" class="col"></div>
+          <div id="categories" class="col"></div>
+          <div id="stars" class="col"></div>
+      </div>
+    <div id="hits-container" class="col"></div>
+    <div class="row">
+    <div id="pagination-container" class="col"></div>
+  </div>
+
+
+    <script>
+      var search = instantsearch({
+        appId: '5IN6MVVO7V',
+        apiKey: 'bdeaf1f25b9970d0268b203f917b399e',
+        indexName: 'melocompro-produccion',
+        urlSync: true
+      });
+
+      search.addWidget(
+        instantsearch.widgets.searchBox({
+          container: '#search-box',
+          placeholder: 'Search for products...'
+        })
+      );
+
+      search.addWidget(
+        instantsearch.widgets.hits({
+          container: '#hits-container',
+          templates: {
+            empty: '<div>No Hay Resultados para tu busqueda</div>',
+            item: '<div class="list"><a class="item item-thumbnail-left" href="product.html?productid=22"><img src="http://www.melocompro.com.co/{{url_image}}"><h2>{{{_highlightResult.name.value}}}</h2><p>{{price}} <span class="fontprice shipping">Envio Gratis</span></p><p>Estrellas: {{product_rating}}</p></a></div>'
+          },
+          hitsPerPage: 10
+        })
+      );
+
+      search.addWidget(
+        instantsearch.widgets.pagination({
+          container: '#pagination-container'
+        })
+      );
+
+      search.addWidget(
+        instantsearch.widgets.menu({
+          container: '#categories',
+          attributeName: 'category_name',
+          limit: 10,
+          templates: {
+            header: 'Categories'
+          }
+        })
+      );
+
+  search.addWidget(
+  instantsearch.widgets.starRating({
+    container: '#stars',
+    attributeName: 'rating',
+    max: 5,
+    labels: {
+      andUp: '& Up'
+    }
+  })
+  );
+
+  search.addWidget(
+  instantsearch.widgets.clearAll({
+    container: '#clear-all',
+    templates: {
+      link: 'Reset everything'
+    },
+    autoHideContainer: false
+  })
+  );
+
+  search.addWidget(
+  instantsearch.widgets.stats({
+    container: '#stats-container'
+  })
+  );
+
+      search.start();
+    </script>
+  </body>
+
+
+
+
+
+</div>
